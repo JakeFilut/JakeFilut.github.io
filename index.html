@@ -12,8 +12,14 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
 </head>
 <body>
+
     <!-- Menu Screen -->
     <div id="menuScreen" class="screen active">
+<label class="theme-toggle">
+    <input type="checkbox" id="themeSwitch">
+    <span class="slider"></span>
+    <span class="toggle-text">Dark Mode</span>
+</label>
         <h1>Welcome to HellCats Memory Card Game</h1>
         <p>Match all the cards to win! Select your difficulty and click "Start Game" to begin.</p>
         <label for="difficulty">Select Difficulty:</label>
@@ -23,6 +29,10 @@
             <option value="6x6" selected>Hard (6x6)</option>
         </select>
         <button id="startGameButton">Start Game</button>
+
+        
+
+
 
         <!-- Scoreboard -->
         <h2>Scoreboard</h2>
@@ -72,8 +82,12 @@
     <audio id="winAudio" src="audio/winning.mp3"></audio>
     <button id="backToMenuWinnerButton">Back to Menu</button>
 </div>
+<footer class="footer">
+    <p>© 2024 Made by Hellcats Gaming</p>
+</footer>
 
 
     <script src="script.js"></script>
+
 </body>
 </html>

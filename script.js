@@ -11,6 +11,7 @@ const scores6x6 = document.getElementById("scores-6x6");
 const winnerScreen = document.getElementById("winnerScreen");
 const backToMenuWinnerButton = document.getElementById("backToMenuWinnerButton");
 
+
 let flipCount = 0;
 let firstCard = null;
 let secondCard = null;
@@ -25,6 +26,28 @@ const allImages = [
     "images/13.png", "images/14.png", "images/15.png", "images/16.png",
     "images/17.png", "images/18.png"
 ];
+
+// Get theme switch toggle
+const themeSwitch = document.getElementById("themeSwitch");
+
+// Load saved theme preference
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeSwitch.checked = true;
+}
+
+// Add event listener to toggle theme
+themeSwitch.addEventListener("change", () => {
+    if (themeSwitch.checked) {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark"); // Save preference
+    } else {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light"); // Save preference
+    }
+});
+
 
 const correctAudio = new Audio("audio/correct.mp3");
 
@@ -124,14 +147,10 @@ function handleCardClick(e) {
 
         if (firstCard.dataset.image === secondCard.dataset.image) {
             matchedPairs++;
-            correctAudio.play();
             firstCard = null;
             secondCard = null;
 
             if (matchedPairs === totalPairs) {
-                const difficulty = difficultySelect.value;
-                saveScores(difficulty, flipCount);
-                updateScoreboard();
                 setTimeout(() => alert(`You won! Total flips: ${flipCount}`), 500);
             }
         } else {
@@ -145,9 +164,14 @@ function handleCardClick(e) {
     }
 }
 
+// Switch Screens
 startGameButton.addEventListener("click", () => {
-    const difficulty = difficultySelect.value;
+    const difficulty = document.getElementById("difficulty").value;
+
     menuScreen.classList.remove("active");
+    menuScreen.classList.add("hidden");
+
+    gameScreen.classList.remove("hidden");
     gameScreen.classList.add("active");
 
     if (difficulty === "2x2") createBoard(2);
@@ -155,10 +179,15 @@ startGameButton.addEventListener("click", () => {
     else if (difficulty === "6x6") createBoard(6);
 });
 
+// Back to Menu
 backToMenuButton.addEventListener("click", () => {
     gameScreen.classList.remove("active");
+    gameScreen.classList.add("hidden");
+
+    menuScreen.classList.remove("hidden");
     menuScreen.classList.add("active");
 });
+
 
 function showWinnerScreen(score, difficulty) {
     // Hide game screen and show winner screen
@@ -173,12 +202,25 @@ function showWinnerScreen(score, difficulty) {
 
     // Play winning audio
     const winAudio = document.getElementById("winAudio");
-    winAudio.currentTime = 0; // Reset the audio in case it's played again
+    winAudio.currentTime = 0; // Reset the audio to the beginning
     winAudio.play();
 
     // Update the leaderboard for the winner screen
     updateWinnerLeaderboard();
 }
+
+
+backToMenuWinnerButton.addEventListener("click", () => {
+    const winAudio = document.getElementById("winAudio");
+    winAudio.pause(); // Stop the audio
+    winAudio.currentTime = 0; // Reset the audio
+
+    // Transition screens
+    winnerScreen.classList.remove("active");
+    winnerScreen.classList.add("hidden");
+    menuScreen.classList.remove("hidden");
+    menuScreen.classList.add("active");
+});
 
 function updateWinnerLeaderboard() {
     const scores = getScores();

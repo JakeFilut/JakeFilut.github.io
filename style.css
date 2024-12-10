@@ -9,19 +9,22 @@ body {
     line-height: 1.6;
 }
 
-/* Screen Styling */
+/* Center the Game Content */
 .screen {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Always centers vertically */
+    padding: 10px;
+    gap: 15px; /* Space between elements */
 }
 
 .screen.active {
     display: flex;
 }
 
+/* General Hidden Class */
 .hidden {
     display: none;
 }
@@ -31,96 +34,155 @@ h1 {
     font-size: 2.8rem;
     color: #3498db;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Instructions */
 p {
     font-size: 1.2rem;
-    margin-bottom: 20px;
+    color: #34495e;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-/* Difficulty Selector and Start Button */
-#difficulty,
-#startGameButton,
-#backToMenuButton {
+/* Difficulty Selector Styling */
+#difficulty {
     font-size: 1rem;
-    margin: 10px;
-    padding: 10px 20px;
+    padding: 8px 12px;
     border-radius: 5px;
-    border: 1px solid #bdc3c7;
+    border: 2px solid #bdc3c7;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+#difficulty:hover {
+    border-color: #3498db;
+    background-color: #dfe6e9;
+}
+
+/* Start Game Button Styling */
+#startGameButton {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    background-color: #27ae60;
+    color: white;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
 }
 
-#difficulty {
-    background-color: #ecf0f1;
+#startGameButton:hover {
+    background-color: #2ecc71;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
 
-#startGameButton,
-#backToMenuButton {
-    background-color: #3498db;
-    color: #fff;
+#startGameButton:active {
+    background-color: #1e8449;
+    transform: translateY(0);
+}
+
+/* Back to Menu Button */
+#backToMenuButton,
+#winnerScreen #backToMenuWinnerButton {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 8px;
     border: none;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-#startGameButton:hover,
-#backToMenuButton:hover {
+#backToMenuButton:hover,
+#winnerScreen #backToMenuWinnerButton:hover {
     background-color: #2980b9;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
 
-#startGameButton:active,
-#backToMenuButton:active {
+#backToMenuButton:active,
+#winnerScreen #backToMenuWinnerButton:active {
     background-color: #2471a3;
+    transform: translateY(0);
 }
 
-/* Game Board */
 .game-board {
     display: grid;
-    gap: 10px;
-    justify-content: center;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 2px solid #ecf0f1;
-    border-radius: 10px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    justify-content: center; /* Center the cards horizontally */
+    align-content: center; /* Center the cards vertically */
+    row-gap: 20px; /* Vertical spacing between rows */
+    column-gap: 45px; /* Horizontal spacing between columns */
+    background-color: #ffffff; /* White background for the board */
+    border: 3px solid #ecf0f1; /* Thin border for the board */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    padding: 30px; /* Add padding inside the board */
+    width: fit-content; /* Automatically adjust width */
+    height: fit-content; /* Automatically adjust height */
+    margin: 0 auto; /* Center the board horizontally */
 }
 
-/* Dynamic Grid Setup */
+
+/* Grid for 2x2 Difficulty */
 .game-board[data-size="2x2"] {
-    grid-template-columns: repeat(2, 100px);
+    grid-template-columns: repeat(2, 120px); /* 2 columns for 2x2 */
+    column-gap: 40px; /* Horizontal spacing */
+    row-gap: 30px; /* Vertical spacing */
 }
 
+/* Grid for 4x4 Difficulty */
 .game-board[data-size="4x4"] {
-    grid-template-columns: repeat(4, 100px);
+    grid-template-columns: repeat(4, 120px); /* 4 columns for 4x4 */
+    column-gap: 40px;
+    row-gap: 30px;
 }
 
+/* Grid for 6x6 Difficulty */
 .game-board[data-size="6x6"] {
-    grid-template-columns: repeat(6, 100px);
+    grid-template-columns: repeat(6, 120px); /* 6 columns for 6x6 */
+    column-gap: 40px;
+    row-gap: 30px;
 }
+
 
 /* Card Styling */
 .card {
-    width: 100px;
-    height: 100px;
-    background-color: #ecf0f1;
-    border: 2px solid #bdc3c7;
-    border-radius: 8px;
+    width: 120px; /* Match the card width to the grid template */
+    height: 120px; /* Match the card height to the grid template */
+    background-color: #ffffff;
+    background-image: url("images/card-back.png");
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #bdc3c7;
+    border-radius: 10px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transform: scale(1);
-    transition: transform 0.2s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+transform: translateX(-13px);
 }
 
+
 .card:hover {
-    transform: scale(1.05);
-    border-color: #3498db;
+    transform: scale(1.1); /* Slightly increase size (10%) */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for emphasis */
+transform: translateX(-13px);
 }
 
 .card.flipped {
     background-color: #fff;
+    background-image: none;
     cursor: default;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -131,110 +193,37 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 .card.flipped img {
     display: block;
 }
 
-#scoreboard {
-    margin-top: 20px;
-    text-align: left;
-}
-
-#scoreboard h3 {
-    margin-bottom: 5px;
-    color: #2c3e50;
-}
-
-#scoreboard ul {
-    list-style: none;
-    padding: 0;
-}
-
-#scoreboard ul li {
-    background: #ecf0f1;
-    padding: 5px 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    color: #34495e;
-    font-size: 1rem;
-}
-
-/* General Body Styling */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f6f9;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    color: #2c3e50;
-    line-height: 1.6;
-}
-
-/* Title and Instructions */
-h1 {
-    font-size: 2.8rem;
-    color: #3498db;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-/* Difficulty Selector and Buttons */
-#difficulty,
-#startGameButton {
-    font-size: 1rem;
-    margin: 10px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid #bdc3c7;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-#difficulty {
-    background-color: #ecf0f1;
-}
-
-#startGameButton {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-}
-
-#startGameButton:hover {
-    background-color: #2980b9;
-}
-
-/* Scoreboard Styling */
+/* Scoreboard Section Styling */
 #scoreboard {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     margin-top: 20px;
+    width: 100%;
+    max-width: 700px;
 }
 
 .score-section {
     background-color: #ffffff;
     border: 2px solid #bdc3c7;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    width: 200px;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 .score-section h3 {
-    text-align: center;
-    color: #2c3e50;
     font-size: 1.2rem;
     margin-bottom: 10px;
+    border-bottom: 1px solid #ecf0f1;
 }
 
 .score-section ul {
@@ -245,12 +234,11 @@ p {
 
 .score-section ul li {
     background-color: #ecf0f1;
-    padding: 8px 10px;
+    padding: 5px;
     margin: 5px 0;
     border-radius: 5px;
     color: #34495e;
-    font-size: 1rem;
-    text-align: center;
+    font-size: 0.9rem;
 }
 
 /* Winner Screen Styling */
@@ -262,84 +250,111 @@ p {
 #winnerScreen h1 {
     font-size: 2.5rem;
     color: #27ae60;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 #winnerScreen p {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #34495e;
 }
 
-#winnerScreen h2 {
-    margin-top: 30px;
-    margin-bottom: 20px;
-    color: #2c3e50;
-    font-size: 2rem;
+/* Dark Mode Styling */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
-/* Scoreboard Styling */
-#scoreboard {
+body.dark-mode .game-board {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-mode .card {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode .card.flipped {
+    background-color: #3a3a3a;
+}
+
+body.dark-mode button {
+    background-color: #444;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+body.dark-mode button:hover {
+    background-color: #555;
+}
+
+body.dark-mode button:active {
+    background-color: #666;
+}
+
+/* Dark Mode Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.score-section {
-    background-color: #ffffff;
-    border: 2px solid #bdc3c7;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    padding: 10px;
-    text-align: left;
-}
-
-.score-section h3 {
-    text-align: center;
+    align-items: center;
+    z-index: 1000;
+    gap: 10px;
+    font-size: 1rem;
     color: #2c3e50;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.score-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.score-section ul li {
-    background-color: #ecf0f1;
-    padding: 8px 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    color: #34495e;
-    font-size: 1rem;
-    text-align: center;
-}
-
-/* Back to Menu Button Styling */
-#winnerScreen #backToMenuWinnerButton {
-    font-size: 1rem;
-    margin-top: 20px;
-    padding: 12px 25px;
-    border-radius: 8px;
-    border: none;
-    background-color: #3498db;
-    color: white;
     font-weight: bold;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+.theme-toggle .slider {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 34px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
 }
 
-#winnerScreen #backToMenuWinnerButton:hover {
-    background-color: #2980b9;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    transform: translateY(-2px);
+.theme-toggle .slider:before {
+    content: "";
+    position: absolute;
+    height: 19px;
+    width: 19px;
+    background-color: white;
+    border-radius: 50%;
+    bottom: 3px;
+    left: 3px;
+    transition: transform 0.3s;
 }
 
-#winnerScreen #backToMenuWinnerButton:active {
-    background-color: #2471a3;
-    transform: translateY(0);
+.theme-toggle input:checked + .slider {
+    background-color: #3498db;
 }
+
+.theme-toggle input:checked + .slider:before {
+    transform: translateX(25px);
+}
+
+.footer {
+    position: fixed; /* Sticks the footer at the bottom of the page */
+    bottom: 0;
+    width: 100%; /* Spans the entire width of the page */
+    text-align: center; /* Centers the text */
+    padding: 10px 0; /* Adds vertical spacing */
+    font-size: 1rem; /* Ensures text is readable */
+    font-weight: 500; /* Slightly bold for emphasis */
+    color: #2c3e50; /* Neutral dark color for the text */
+    z-index: 1000; /* Ensures it stays above other content */
+}
+
+.footer p {
+    margin: 0; /* Removes default margins */
+    font-family: 'Roboto', sans-serif; /* Matches the rest of the page's font */
+    letter-spacing: 0.5px; /* Adds slight spacing for elegance */
+}
+
