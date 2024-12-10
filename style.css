@@ -1,0 +1,345 @@
+/* General Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* Screen Styling */
+.screen {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Page Title */
+h1 {
+    font-size: 2.8rem;
+    color: #3498db;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Instructions */
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Difficulty Selector and Start Button */
+#difficulty,
+#startGameButton,
+#backToMenuButton {
+    font-size: 1rem;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#difficulty {
+    background-color: #ecf0f1;
+}
+
+#startGameButton,
+#backToMenuButton {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+}
+
+#startGameButton:hover,
+#backToMenuButton:hover {
+    background-color: #2980b9;
+}
+
+#startGameButton:active,
+#backToMenuButton:active {
+    background-color: #2471a3;
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #ecf0f1;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Dynamic Grid Setup */
+.game-board[data-size="2x2"] {
+    grid-template-columns: repeat(2, 100px);
+}
+
+.game-board[data-size="4x4"] {
+    grid-template-columns: repeat(4, 100px);
+}
+
+.game-board[data-size="6x6"] {
+    grid-template-columns: repeat(6, 100px);
+}
+
+/* Card Styling */
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #ecf0f1;
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    border-color: #3498db;
+}
+
+.card.flipped {
+    background-color: #fff;
+    cursor: default;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Image Styling */
+.card img {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card.flipped img {
+    display: block;
+}
+
+#scoreboard {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#scoreboard h3 {
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+#scoreboard ul {
+    list-style: none;
+    padding: 0;
+}
+
+#scoreboard ul li {
+    background: #ecf0f1;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #34495e;
+    font-size: 1rem;
+}
+
+/* General Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+/* Title and Instructions */
+h1 {
+    font-size: 2.8rem;
+    color: #3498db;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Difficulty Selector and Buttons */
+#difficulty,
+#startGameButton {
+    font-size: 1rem;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #bdc3c7;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#difficulty {
+    background-color: #ecf0f1;
+}
+
+#startGameButton {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+}
+
+#startGameButton:hover {
+    background-color: #2980b9;
+}
+
+/* Scoreboard Styling */
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.score-section {
+    background-color: #ffffff;
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 10px;
+    text-align: left;
+}
+
+.score-section h3 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.score-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.score-section ul li {
+    background-color: #ecf0f1;
+    padding: 8px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #34495e;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Winner Screen Styling */
+#winnerScreen {
+    text-align: center;
+    padding: 20px;
+}
+
+#winnerScreen h1 {
+    font-size: 2.5rem;
+    color: #27ae60;
+    margin-bottom: 20px;
+}
+
+#winnerScreen p {
+    font-size: 1.5rem;
+    color: #34495e;
+}
+
+#winnerScreen h2 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 2rem;
+}
+
+/* Scoreboard Styling */
+#scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.score-section {
+    background-color: #ffffff;
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 10px;
+    text-align: left;
+}
+
+.score-section h3 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.score-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.score-section ul li {
+    background-color: #ecf0f1;
+    padding: 8px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #34495e;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Back to Menu Button Styling */
+#winnerScreen #backToMenuWinnerButton {
+    font-size: 1rem;
+    margin-top: 20px;
+    padding: 12px 25px;
+    border-radius: 8px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#winnerScreen #backToMenuWinnerButton:hover {
+    background-color: #2980b9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+#winnerScreen #backToMenuWinnerButton:active {
+    background-color: #2471a3;
+    transform: translateY(0);
+}
